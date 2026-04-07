@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>インフルエンサー担当｜現状の課題と改善に向けた取り組み</title>
+  <style>
+    :root {
+      --ink: #1a1714;
+      --paper: #f5f0e8;
+      --accent: #b85c2c;
+      --accent-light: #e8c4a8;
+      --muted: #6b6055;
+      --rule: #d4c9b8;
+      --section-bg: #faf7f2;
+      --tag-bg: #2c2420;
+      --tag-text: #f5f0e8;
+      --font-sans: 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', 'Yu Gothic', 'Meiryo', sans-serif;
+      --font-serif: 'Hiragino Mincho ProN', 'Yu Mincho', 'Georgia', serif;
+      --font-display: 'Georgia', 'Times New Roman', serif;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--font-sans);
+      font-weight: 300;
+      line-height: 1.9;
+      min-height: 100vh;
+    }
+
+    /* ── HEADER ── */
+    header {
+      position: relative;
+      padding: 72px 0 56px;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    header::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    }
+
+    .header-label {
+      display: inline-block;
+      font-family: var(--font-sans);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.25em;
+      color: var(--muted);
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      border-bottom: 1px solid var(--rule);
+      padding-bottom: 8px;
+    }
+
+    h1 {
+      font-family: var(--font-serif);
+      font-size: clamp(22px, 4vw, 36px);
+      font-weight: 300;
+      letter-spacing: 0.05em;
+      color: var(--ink);
+      line-height: 1.5;
+    }
+
+    h1 em {
+      font-style: normal;
+      color: var(--accent);
+    }
+
+    .header-rule {
+      width: 60px;
+      height: 1px;
+      background: var(--accent);
+      margin: 24px auto 0;
+    }
+
+    /* ── LAYOUT ── */
+    main {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 0 28px 100px;
+    }
+
+    /* ── INTRO ── */
+    .intro {
+      padding: 40px 0 48px;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .intro p {
+      font-family: var(--font-serif);
+      font-size: 15px;
+      font-weight: 300;
+      color: var(--ink);
+      line-height: 2.1;
+      letter-spacing: 0.02em;
+    }
+
+    /* ── SECTION ── */
+    .section {
+      margin-top: 64px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+
+    .section-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--tag-bg);
+      color: var(--tag-text);
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      padding: 5px 12px;
+      white-space: nowrap;
+    }
+
+    .section-tag span {
+      font-family: var(--font-display);
+      font-size: 14px;
+      color: var(--accent-light);
+    }
+
+    h2 {
+      font-family: var(--font-serif);
+      font-size: clamp(17px, 2.5vw, 21px);
+      font-weight: 400;
+      letter-spacing: 0.03em;
+      line-height: 1.5;
+    }
+
+    /* ── CARD ── */
+    .card {
+      background: var(--section-bg);
+      border-left: 3px solid var(--accent);
+      padding: 28px 32px;
+      margin-bottom: 4px;
+    }
+
+    .card + .card {
+      margin-top: 2px;
+      border-left-color: var(--rule);
+    }
+
+    .card-title {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    .card p {
+      font-size: 14px;
+      color: var(--ink);
+      line-height: 2;
+    }
+
+    /* ── IMPROVEMENT LIST ── */
+    .improvement {
+      margin-top: 32px;
+    }
+
+    .improvement-title {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      color: var(--muted);
+      text-transform: uppercase;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .improvement-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--rule);
+    }
+
+    .improvement-item {
+      display: flex;
+      gap: 20px;
+      padding: 18px 0;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .improvement-item:last-child {
+      border-bottom: none;
+    }
+
+    .improvement-num {
+      font-family: var(--font-display);
+      font-size: 28px;
+      color: var(--accent-light);
+      line-height: 1;
+      min-width: 28px;
+      padding-top: 4px;
+    }
+
+    .improvement-text {
+      font-size: 14px;
+      color: var(--ink);
+      line-height: 1.9;
+      padding-top: 6px;
+    }
+
+    /* ── COMMON SECTION ── */
+    .common-section {
+      margin-top: 64px;
+      padding: 40px 36px;
+      background: var(--ink);
+      color: var(--paper);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .common-section::before {
+      content: 'COMMON';
+      position: absolute;
+      top: -10px;
+      right: 24px;
+      font-family: var(--font-display);
+      font-size: 80px;
+      color: rgba(255,255,255,0.04);
+      line-height: 1;
+    }
+
+    .common-section .section-label {
+      font-size: 10px;
+      letter-spacing: 0.25em;
+      color: var(--accent-light);
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .common-section h2 {
+      font-family: var(--font-serif);
+      font-size: 18px;
+      font-weight: 400;
+      color: var(--paper);
+      margin-bottom: 20px;
+      line-height: 1.6;
+    }
+
+    .common-section p {
+      font-size: 14px;
+      color: rgba(245, 240, 232, 0.75);
+      line-height: 2.1;
+    }
+
+    /* ── CONCLUSION ── */
+    .conclusion {
+      margin-top: 64px;
+      padding-top: 40px;
+      border-top: 1px solid var(--rule);
+    }
+
+    .conclusion .label {
+      font-size: 10px;
+      letter-spacing: 0.25em;
+      color: var(--muted);
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    .conclusion p {
+      font-family: var(--font-serif);
+      font-size: 15px;
+      font-weight: 300;
+      line-height: 2.2;
+      color: var(--ink);
+    }
+
+    .conclusion p + p {
+      margin-top: 20px;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 40px 0;
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      color: var(--rule);
+      border-top: 1px solid var(--rule);
+    }
+
+    /* ── DIVIDER ── */
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 48px 0 0;
+      color: var(--rule);
+      font-family: var(--font-display);
+      font-size: 18px;
+    }
+
+    .divider::before,
+    .divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--rule);
+    }
+
+    @media print {
+      body { background: white; }
+      .common-section { background: #1a1714 !important; -webkit-print-color-adjust: exact; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-label">Self-Assessment Report</div>
+    <h1>インフルエンサー担当<br><em>現状の課題と改善に向けた取り組み</em></h1>
+    <div class="header-rule"></div>
+  </header>
+
+  <main>
+
+    <!-- INTRO -->
+    <section class="intro">
+      <p>インフルエンサーと関わる中で、日々の業務は一定のペースで回っているものの、自分自身の成長という観点ではあまり大きな変化は感じられなかったと思います。企画のこなし方やインフルエンサー・関係者とのコミュニケーションに大きな問題はないが、振り返ったときに「先月の自分より成長しているか」という問いに自信を持って答えられないと思います。日々の業務をこなすことに精一杯になってしまい、自分のスキルや視野を広げるための時間や意識がおろそかになっていたことも、この停滞感の一因だと感じています。</p>
+      <br>
+      <p>今回は、現状における成長のブレーキとなっている課題を二点に絞って整理し、それぞれの背景と具体的な改善策を考えました。</p>
+    </section>
+
+    <!-- ISSUE 01 -->
+    <section class="section">
+      <div class="section-header">
+        <div class="section-tag"><span>01</span> ISSUE</div>
+        <h2>利益につながらないインフルエンサーへの時間配分</h2>
+      </div>
+
+      <div class="card">
+        <div class="card-title">現状</div>
+        <p>関係性や断りづらさを理由に、企画・インプレッション・拡散への貢献度が低いインフルエンサーへの対応に多くの時間を費やしてしまっている。個々の対応は小さなものであっても、積み重なると業務時間の中でそれなりの比重を占めており、本来注力すべき案件やインフルエンサーへの還元が不足している状態にある。また、貢献度の低いインフルエンサーの対応に時間が取られることで、新規インフルエンサーとの関係構築や既存の拡散協力に尽力してくれるインフルエンサーへのフォローが後手に回りやすくなっているという点も、見逃せない影響のひとつだと感じています。</p>
+      </div>
+
+      <div class="card">
+        <div class="card-title">原因</div>
+        <p>「関係を切ることへの抵抗感」や「いつか役立つかもしれない」という期待感が、優先順位の判断を感情ベースにしてしまっていた。また、文句の多い相手ほど丁寧に対応しようとする心理が働き、結果として非効率な時間配分につながっていた。本来であれば、貢献度や将来的な可能性を軸に関わり方を判断すべきところを、関係の長さや相手の態度に引っ張られて判断が鈍くなっていたと考えています。感情と業務判断を切り分けることが、今の自分には必要なステップだと感じています。</p>
+      </div>
+
+      <div class="improvement">
+        <div class="improvement-title">改善策</div>
+        <div class="improvement-item">
+          <div class="improvement-num">1</div>
+          <div class="improvement-text">現存インフルエンサーの見直しを行い、貢献度・活動状況・将来性を基準に関与の優先度を整理する</div>
+        </div>
+        <div class="improvement-item">
+          <div class="improvement-num">2</div>
+          <div class="improvement-text">優先度の低い関係については、企画などのお願い連絡を段階的に調整し、無理のない形で距離感を見直す</div>
+        </div>
+        <div class="improvement-item">
+          <div class="improvement-num">3</div>
+          <div class="improvement-text">日々の時間を、成果につながる既存案件の深化および新規インフルエンサーとの関係構築に充てる</div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider">◆</div>
+
+    <!-- ISSUE 02 -->
+    <section class="section">
+      <div class="section-header">
+        <div class="section-tag"><span>02</span> ISSUE</div>
+        <h2>新規インフルエンサーの活用不足と既存への過度な依存</h2>
+      </div>
+
+      <div class="card">
+        <div class="card-title">現状</div>
+        <p>新しいインフルエンサーの獲得はうまくいっているにもかかわらず、実際の仕事として動かせているケースが少ない。結果として、業務のほとんどが既存のインフルエンサーとのやり取りに集中しており、企画の幅や起用インフルエンサーのレパートリーが少ない状況になっている。新規のインフルエンサーを獲得すること自体は成果として評価できるが、そこで止まってしまっていては、関係を「資産」として活かしきれていないと言わざるを得ない。獲得した関係を仕事につなげるところまでが自分の役割だという意識を、あらためて持ち直す必要があると感じています。</p>
+      </div>
+
+      <div class="card">
+        <div class="card-title">背景・原因</div>
+        <p>既存の関係はコミュニケーションのパターンが確立されており、新規対応と比べて心理的・時間的コストが低い。そのため、意識しないと既存への対応が優先されやすく、新規インフルエンサーへのアプローチが後回しになる。「タイミングを見ている」「もう少し関係を深めてから」という判断が継続してしまうことも要因のひとつだと思われる。また、新規インフルエンサーとの最初の一歩をどう踏み出すか、その型が自分の中にまだ定まっていないことも、動き出しの遅さにつながっていると感じている。</p>
+      </div>
+
+      <div class="improvement">
+        <div class="improvement-title">改善策</div>
+        <div class="improvement-item">
+          <div class="improvement-num">1</div>
+          <div class="improvement-text">新規インフルエンサーとの「小さな接点」を意識的に設計する。大型案件ではなく、小規模な企画や情報交換から関係を動かし始める</div>
+        </div>
+        <div class="improvement-item">
+          <div class="improvement-num">2</div>
+          <div class="improvement-text">イベントごとに新規インフルエンサーと具体的な企画を動かしたり、イベント中はなるべく声をかけに行くことで、関係の温度を保つ</div>
+        </div>
+        <div class="improvement-item">
+          <div class="improvement-num">3</div>
+          <div class="improvement-text">インフルエンサー同士の横のつながりを活かし、紹介やコミュニティを通じた新規獲得につなげる</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- COMMON -->
+    <div class="common-section">
+      <div class="section-label">Common Structure</div>
+      <h2>二つの課題に共通するもの</h2>
+      <p>上記2点の課題には、共通した構造がある。どちらも「現状を変えることへの心理的な抵抗」が根本にあり、慣れた環境や関係性に留まろうとする傾向が行動を制限している。現状維持は一見安定しているように見えるが、環境や市場が変化する中では相対的な後退を意味する。意識的に動かなければ、業務の幅も自身のスキルも固定されたままになる。また、これは自分自身が意識しにくいもので、日々の忙しさの中に埋もれて見過ごされやすい。今回のレポートを書くことで、自分ごととして向き合う機会になったと感じています。この認識を起点に、具体的な行動変容につなげていきたい。</p>
+    </div>
+
+    <!-- CONCLUSION -->
+    <section class="conclusion">
+      <div class="label">Conclusion ／ まとめ</div>
+      <p>今回のレポートを通じて、成長を妨げていた要因が「外部環境」ではなく「自分自身の判断や習慣」にあることを改めて認識しました。課題として挙げた2点はいずれも、取り組み次第で改善できるものであり、まずは小さな行動から変えていくことを意識していく。引き続き自身の動きを振り返りながら、仕事の質と幅を広げていきたいと考えています。</p>
+      <p>成長とは大きな変化だけを指すのではなく、日々の小さな判断の積み重ねの中にあると今は思っているので、その意識を忘れずに、これからの業務に取り組んでいきます。</p>
+    </section>
+
+  </main>
+
+  <footer>INFLUENCER MANAGEMENT — SELF-ASSESSMENT REPORT</footer>
+
+</body>
+</html>
